@@ -1,0 +1,100 @@
+{
+  "info": {
+    "name": "E-commerce Order Processing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "d3dcb5ae-8474-4f7f-8c02-8b5b7d5b21a1"
+  },
+  "item": [
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customerId\": \"cust-001\",\n  \"items\": [\n    {\n      \"productId\": \"SKU-001\",\n      \"name\": \"Bluetooth Headphones\",\n      \"quantity\": 2,\n      \"unitPrice\": 1599.5\n    },\n    {\n      \"productId\": \"SKU-002\",\n      \"name\": \"Wireless Mouse\",\n      \"quantity\": 1,\n      \"unitPrice\": 899.0\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8990/api/v1/orders",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8990",
+          "path": [
+            "api",
+            "v1",
+            "orders"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Order by ID",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8990/api/v1/orders/{{orderId}}"
+      }
+    },
+    {
+      "name": "List Orders (All)",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8990/api/v1/orders"
+      }
+    },
+    {
+      "name": "List Orders by Status",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8990/api/v1/orders?status={{status}}"
+      }
+    },
+    {
+      "name": "Update Order Status",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"SHIPPED\"\n}"
+        },
+        "url": "http://localhost:8990/api/v1/orders/{{orderId}}/status"
+      }
+    },
+    {
+      "name": "Cancel Order",
+      "request": {
+        "method": "DELETE",
+        "url": "http://localhost:8990/api/v1/orders/{{orderId}}"
+      }
+    },
+    {
+      "name": "List Processing Orders",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8990/api/v1/orders?status=PROCESSING"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "orderId",
+      "value": "e44b8fae-2dc2-4d44-91d7-37fb449fbe40"
+    },
+    {
+      "key": "status",
+      "value": "PENDING"
+    }
+  ]
+}
